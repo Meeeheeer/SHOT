@@ -2,6 +2,33 @@ import numpy as np
 import torch.nn as nn
 import torch.nn.utils.weight_norm as weightNorm
 from torchvision import models
+from timm import create_model
+
+
+def get_backbone(net,config,pretrained=False,usage='timm'):
+    """
+    Gets freature extractor backbone from timm.
+
+    Args:
+        net: Configuration for feature extactor backbone.
+        config : yaml config
+        pretrained : set true to use imagenet pretrained weights.
+        usage : set from where to to load model.
+    """
+
+    # Note : usage param is provided to set loading support to custom model architectures, not pretrained weights.
+    if usage == 'timm':
+        if 'vit' in net or 'swin' in net or 'convnext' in net:
+            backbone = create_model(net,pretrained=pretrained,drop_path_rate=config.MODEL.CONFIG.DROP_PATH_RATE)
+        else:
+            backbone = create_model(net,pretrained=pretrained)
+        # Remove head.
+        backbone.reset_classifier(0)
+    else:
+        # To add custom feature extactor architecture use this section
+        backbon = None
+
+    return backbone
 
 
 def calc_coeff(iter_num, high=1.0, low=0.0, alpha=10.0, max_iter=10000.0):
@@ -154,3 +181,5 @@ class Res50(nn.Module):
         x = x.view(x.size(0), -1)
         y = self.fc(x)
         return x, y
+
+

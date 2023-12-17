@@ -29,7 +29,7 @@ def main():
 
     data_path = args.data_root
     dataset_name = os.path.basename(data_path)
-    imagefolder_path = os.path.join(os.path.dirname(data_path), '%s_ImageFolder' % dataset_name)
+    imagefolder_path = os.path.join(os.path.dirname(data_path), '%s_split' % dataset_name)
     create_dir(imagefolder_path)
 
     train_path = os.path.join(imagefolder_path, 'train')
