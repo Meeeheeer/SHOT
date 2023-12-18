@@ -12,7 +12,7 @@ adaptation technique with using different backbone networks, Like Vision Transfo
 
 1. Clone repository
    ```
-     git clone git@github.com:ddp5730/SHOT.git
+     git clone git@github.com:Meeeheeer/SHOT.git
    ```
 2. Install submodules
    ```
