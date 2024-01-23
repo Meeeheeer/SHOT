@@ -14,10 +14,6 @@ adaptation technique with using different backbone networks, Like Vision Transfo
    ```
      git clone git@github.com:Meeeheeer/SHOT.git
    ```
-2. Install submodules
-   ```
-   git submodule update --init --recursive
-   ```
 
 ### Requirements
 See Dockerfile for full list of install dependencies and packages
